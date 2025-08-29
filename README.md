@@ -29,10 +29,6 @@ Thank you for being part of the Mediator community!
 
 # Mediator Quick Start Guide
 
-A lightweight, extensible Mediator library for .NET with CQRS, automatic assembly scanning, validation, decorators, pipeline behaviors, and notifications.
-
----
-
 ## 1. Installation & Registration
 
 **Install this nuget package** in your solution.

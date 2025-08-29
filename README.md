@@ -27,7 +27,7 @@ If you are interested in contributing or accessing the source, please refer to t
 
 Thank you for being part of the Mediator community!
 
-# Mediator Quick Start Guide
+# Quick Start Guide
 
 ## 1. Installation & Registration
 

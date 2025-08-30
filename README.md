@@ -31,7 +31,7 @@ Thank you for being part of the Mediator community!
 
 ## 1. Installation & Registration
 
-**Install this nuget package** in your solution.
+**Install this nuget package** in your solution. Please note that the namespace is **Mediator**.
 
 ### Automatic Handler Registration
 

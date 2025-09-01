@@ -42,6 +42,11 @@ Register handlers, behaviors, validators, and the mediator with assembly scannin
 services.AddMediator(assemblies: new[] { typeof(PingCommand).Assembly });
 // Or, scan all loaded assemblies
 services.AddMediator(AppDomain.CurrentDomain.GetAssemblies());
+// Or, with MediatorOptions
+services.AddMediator(options => {
+	options.EnableDiagnosticsLogging = false;
+	options.RequestTimeout = TimeSpan.FromSeconds(30);
+}, Assembly.GetExecutingAssembly());
 ```
 
 AddMediator will automatically find and register:
@@ -70,7 +75,7 @@ builder.Services.AddTransient<IRequestHandler<CreateOrderCommand, int>>(sp =>
 );
 ```
 
-## 2. Defineing REquests, Handlers and Validators
+## 2. Defining Requests, Handlers and Validators
 
 ### Commands, Queries, Notifications
 
@@ -211,8 +216,13 @@ services.AddMediator(new[] { typeof(HelloCommand).Assembly });
 var result = await mediator.Send(new HelloCommand("Mediator")); // "Hello, Mediator!"
 ```
 
-## 6. Advanced
+## 6. MediatorDiagnostics
+
+When MediatorOptions.EnableDiagnosticsLogging is set to true, execution durations for all requests are automatically collected. You can retrieve comprehensive diagnostics information by accessing MediatorDiagnostics through the IMediator interface. This report provides key metrics per request type, including the number of calls, failure rate and average execution duration.
+
+## 7. Advanced
 
 - Serial notifications: Use ISerialNotification for sequential notification handling.
 - Decorator chaining: Register multiple decorators for layered logic.
 - Custom behaviors: Implement your own IPipelineBehavior<TRequest, TResponse>.
+- Leverage the IRequestTimeout interface to customize the request timeout for operations that are expected to take longer than the default configuration.
